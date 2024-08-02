@@ -1,0 +1,21 @@
+{
+    'name': 'MXT Manufacturing Reconstruction',
+    'version': '17.0.1.0.0',
+    'category': 'Manufacturing',
+    'summary': 'Independent Community manufacturing, replenishment and approval lab',
+    'author': 'Muhammad Shahyan Khalid',
+    'license': 'LGPL-3',
+    'depends': ['mrp', 'purchase_stock', 'sale_mrp', 'sale_stock'],
+    'data': [
+        'security/groups.xml',
+        'security/ir.model.access.csv',
+        'security/rules.xml',
+        'data/stages.xml',
+        'data/cron.xml',
+        'views/operations.xml',
+        'reports/operations.xml',
+    ],
+    'demo': ['demo/scenario.xml'],
+    'application': True,
+    'installable': True,
+}

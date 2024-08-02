@@ -1,0 +1,22 @@
+{
+  "database": "mxt_demo",
+  "sales_order": "S00001",
+  "manufacturing_order": "LPRD/MO/00001",
+  "screenshots": [
+    "material-policies.png",
+    "production-board.png",
+    "production-workflow.png"
+  ],
+  "browser_page_errors": [],
+  "checks": [
+    "Authenticated through genuine local Odoo session",
+    "Sales confirmation created one native manufacturing order",
+    "Both material policies evaluated twice",
+    "Production Kanban rendered an actual MO",
+    "Material policy list rendered actual forecasts",
+    "Manufacturing Lab Workflow form rendered",
+    "Repeated fixture loading retained one sale, one MO, two policies and unchanged on-hand stock",
+    "Repeated planning retained one pack RFQ line for five units",
+    "Actual QWeb PDF downloaded through authenticated HTTP"
+  ]
+}

@@ -1,0 +1,8 @@
+<odoo noupdate="1">
+    <record id="stage_planned" model="mxt.production.stage"><field name="name">Planned</field><field name="code">planned</field><field name="sequence">10</field></record>
+    <record id="stage_review" model="mxt.production.stage"><field name="name">Material Review</field><field name="code">review</field><field name="sequence">20</field></record>
+    <record id="stage_ready" model="mxt.production.stage"><field name="name">Materials Ready</field><field name="code">ready</field><field name="sequence">30</field></record>
+    <record id="stage_production" model="mxt.production.stage"><field name="name">In Production</field><field name="code">production</field><field name="sequence">40</field></record>
+    <record id="stage_quality" model="mxt.production.stage"><field name="name">Quality Review</field><field name="code">quality</field><field name="sequence">50</field></record>
+    <record id="stage_done" model="mxt.production.stage"><field name="name">Completed</field><field name="code">done</field><field name="sequence">60</field><field name="fold">True</field></record>
+</odoo>

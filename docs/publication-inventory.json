@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-28",
+  "project": "01-MXT-Manufacturing-ERP",
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 319,
+      "sha256": "4d6f7346050ad1f6a7e0e13b7201c7a256fdb1ce7cc8ac49d88f3fd04537ee27"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 317,
+      "sha256": "6aba688207846b67a565fe4047449842b6ee9f61ecfe2a6ca4290f233895c1cd"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 43878,
+      "sha256": "610674b3a112912e120b24a5cc85d2706bb5d0d9c7627d00b3263e36d92da3b1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 11382,
+      "sha256": "d6133a051d78f0afb885b2e76c11d03309271d4b26369da842377cbd1580d544"
+    },
+    {
+      "path": "addons/mxt_operations/__init__.py",
+      "bytes": 21,
+      "sha256": "5fd10918e1361ad65b4b41bcd8fb525e659267f47c8c4334ae52530e58908e9e"
+    },
+    {
+      "path": "addons/mxt_operations/__manifest__.py",
+      "bytes": 659,
+      "sha256": "35ebcd42b893df9d6790edd87ac5c1e506703480f110fd32c0d18ac72068bb3b"
+    },
+    {
+      "path": "addons/mxt_operations/data/cron.xml",
+      "bytes": 518,
+      "sha256": "2df19f0772089b081e54a54232e76cb7615917fdf6bebd9be66855235e83c5ca"
+    },
+    {
+      "path": "addons/mxt_operations/data/stages.xml",
+      "bytes": 1110,
+      "sha256": "98a38b1f6b1e1434831119f991fab0495f094f4baba31c50ca7e11b42af34f9b"
+    },
+    {
+      "path": "addons/mxt_operations/demo/scenario.xml",
+      "bytes": 5295,
+      "sha256": "aff0d69a05824a86e75cb3d8d3bf5e9774d63d34b449c0a9479ae074992fc631"
+    },
+    {
+      "path": "addons/mxt_operations/models/__init__.py",
+      "bytes": 93,
+      "sha256": "ef3addfd687bd53a958d362dcc4bb8fdd8a002fcb478613aaaa75d8f72adac05"
+    },
+    {
+      "path": "addons/mxt_operations/models/planning.py",
+      "bytes": 8735,
+      "sha256": "26341170c3cc3b79ece4d9409c2553d69bfcc78512d836a92d79ab16f302bd71"
+    },
+    {
+      "path": "addons/mxt_operations/models/product.py",
+      "bytes": 1222,
+      "sha256": "a77f655bd73327fa81b710579331c09a658bcc30efda5721dba21a6902af69ce"
+    },
+    {
+      "path": "addons/mxt_operations/models/production.py",
+      "bytes": 9570,
+      "sha256": "1d45eb3e05f194342b7c005bc51f5e4689cb39fd57cb34e7f5bffd54dc68d5e7"
+    },
+    {
+      "path": "addons/mxt_operations/models/purchase.py",
+      "bytes": 11185,
+      "sha256": "f3c2acd1d5384a5b8809c3796c125975e39bcab6fcf69c305f723251938cab69"
+    },
+    {
+      "path": "addons/mxt_operations/reports/operations.xml",
+      "bytes": 3266,
+      "sha256": "19e908b507d5c5144f0d0c1ae2c27eb69a62ed4274973d6e7b80c37deeefbc9f"
+    },
+    {
+      "path": "addons/mxt_operations/security/groups.xml",
+      "bytes": 2731,
+      "sha256": "ca6d6564c11a62c3633f8e1f4e1c18421ec7af29880563995ca1037926c4c64c"
+    },
+    {
+      "path": "addons/mxt_operations/security/ir.model.access.csv",
+      "bytes": 567,
+      "sha256": "8e136d43219d2cefee5457d95b586ce1b7b1056b526deebba68129deb5fc3bd7"
+    },
+    {
+      "path": "addons/mxt_operations/security/rules.xml",
+      "bytes": 512,
+      "sha256": "d06aca70c8f39fefdc491e8528fec2edb7d6900eb55a8d54b58e464a93d05272"
+    },
+    {
+      "path": "addons/mxt_operations/tests/__init__.py",
+      "bytes": 30,
+      "sha256": "6857c8161916f9a92dcee527df7a14a086fd2e25f861ce9ef5fd382c65dafe0c"
+    },
+    {
+      "path": "addons/mxt_operations/tests/test_operations.py",
+      "bytes": 19579,
+      "sha256": "16a17bb32a74584c7f9d3a662305a4d9f321e21dff3123d5181e2e8ccbb4a562"
+    },
+    {
+      "path": "addons/mxt_operations/views/operations.xml",
+      "bytes": 8823,
+      "sha256": "6b3ed5759319fb6e0ba70013ea001be367e32f3d2cb06a6c7d671deb503a2021"
+    },
+    {
+      "path": "docker/compose.yaml",
+      "bytes": 1157,
+      "sha256": "ca7eae3b095df2de876c957bee5e43c4c950d03f1f17b45c76b03e7bfa2d56de"
+    },
+    {
+      "path": "docker/images.lock.json",
+      "bytes": 230,
+      "sha256": "1ab108cd1f8919733f771974685054a169cca62c8dd4fc5b967b720e210b3a96"
+    },
+    {
+      "path": "docs/MANUAL_REVIEW.md",
+      "bytes": 6761,
+      "sha256": "5d33a7d48cf5f2a520423f01e9e8ece5a75e5da20f87ecc0be3b09154f77d95f"
+    },
+    {
+      "path": "docs/NATIVE_RUNTIME.md",
+      "bytes": 3897,
+      "sha256": "224136493cdd699b0179ad92d3d30e1fa129479489eef3e539f470952f119bf7"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "bytes": 4743,
+      "sha256": "1376067fe7e87fd1a374762179d5caae76ad49ba3a0d88fb31edba94447d907b"
+    },
+    {
+      "path": "docs/browser-review.json",
+      "bytes": 820,
+      "sha256": "0fa9cde5fefd9cc0a10fd7c7f9b125deefca36a15805eaa97625ef8637328bb4"
+    },
+    {
+      "path": "docs/sample-material-summary.pdf",
+      "bytes": 12775,
+      "sha256": "0e0396234ebe73389a6895b417fecfa746455d1ca6fd61fac902732529e34b75"
+    },
+    {
+      "path": "docs/screenshots/material-policies.png",
+      "bytes": 35978,
+      "sha256": "3a4cccf126fc572f657e6d19c0ef2890fb7a1a955d4d5a4c8f2c05207bf341f0"
+    },
+    {
+      "path": "docs/screenshots/production-board.png",
+      "bytes": 34321,
+      "sha256": "7b8719b1af31f70502efc0520ba083ff9f4d46476d816775eaa704e1cb764629"
+    },
+    {
+      "path": "docs/screenshots/production-workflow.png",
+      "bytes": 83916,
+      "sha256": "94dc9c2ec4f283f3f97a29c5ecd21cfaf85697b88353a64d76399c3c2001ca66"
+    },
+    {
+      "path": "scripts/bootstrap.py",
+      "bytes": 1444,
+      "sha256": "588c9baaeffdd5b1c90e06b8a8ae1cc443b2d6a07533ddfe7a186ccb0b9d3304"
+    },
+    {
+      "path": "scripts/browser_review.py",
+      "bytes": 6630,
+      "sha256": "8b59d7b3bba9bafcd02f2e3e28bafd4ab4e38a866036f91e7396158531c90ccb"
+    },
+    {
+      "path": "scripts/configure_native.py",
+      "bytes": 2162,
+      "sha256": "89a1e3145d68c944d33d9058d53e5ed5d285b3e7fab374160df298262195327f"
+    },
+    {
+      "path": "scripts/lab.ps1",
+      "bytes": 1823,
+      "sha256": "7d9761d6e3b04e73266684f6943a0bcb2dd3052d79806245e7fb4212ef176f8e"
+    },
+    {
+      "path": "scripts/native.ps1",
+      "bytes": 2800,
+      "sha256": "2188470ecc6dfc0a08f075ea41ac3adfb79b108dca41f175913330e7372317a5"
+    },
+    {
+      "path": "scripts/publication_audit.py",
+      "bytes": 7029,
+      "sha256": "f0166f392e5abfd13f183db6f257e7d64ff2e122d0db12cbf76724246a721c5f"
+    },
+    {
+      "path": "scripts/seed.py",
+      "bytes": 747,
+      "sha256": "c91052c46941cb20412a3216e0ec74cf390e4e020b63a51613ea241919fb7ed4"
+    }
+  ],
+  "excluded": [
+    ".env",
+    ".local/",
+    "addons/mxt_operations/__pycache__/",
+    "addons/mxt_operations/models/__pycache__/",
+    "addons/mxt_operations/tests/__pycache__/"
+  ],
+  "symlinks": [],
+  "findings": []
+}

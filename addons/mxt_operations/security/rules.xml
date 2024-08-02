@@ -1,0 +1,4 @@
+<odoo>
+    <record id="policy_company_rule" model="ir.rule"><field name="name">Planning policy company isolation</field><field name="model_id" ref="model_mxt_planning_policy"/><field name="domain_force">[('company_id', 'in', company_ids)]</field></record>
+    <record id="event_company_rule" model="ir.rule"><field name="name">Approval history company isolation</field><field name="model_id" ref="model_mxt_approval_event"/><field name="domain_force">[('company_id', 'in', company_ids)]</field></record>
+</odoo>

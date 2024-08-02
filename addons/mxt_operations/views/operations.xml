@@ -1,0 +1,51 @@
+<odoo>
+    <record id="view_policy_tree" model="ir.ui.view">
+        <field name="name">mxt.planning.policy.tree</field><field name="model">mxt.planning.policy</field>
+        <field name="arch" type="xml"><tree><field name="name"/><field name="product_id"/><field name="warehouse_id"/><field name="route_id"/><field name="forecast_qty"/><field name="suggested_qty"/><field name="last_evaluated"/><field name="company_id" groups="base.group_multi_company"/></tree></field>
+    </record>
+    <record id="view_policy_form" model="ir.ui.view">
+        <field name="name">mxt.planning.policy.form</field><field name="model">mxt.planning.policy</field>
+        <field name="arch" type="xml"><form><header><button name="action_evaluate" string="Evaluate and Replenish" type="object" class="oe_highlight" groups="mxt_operations.group_planning_manager"/></header><sheet><h1><field name="name"/></h1><group><group><field name="active"/><field name="company_id"/><field name="product_id"/><field name="warehouse_id"/><field name="route_id"/></group><group><field name="min_qty"/><field name="max_qty"/><field name="safety_qty"/><field name="visibility_days"/><field name="orderpoint_id"/></group></group><group><field name="forecast_qty"/><field name="suggested_qty"/><field name="last_evaluated"/><field name="last_decision"/></group><div class="alert alert-info" role="status">Native reorder minimum and maximum each include the safety buffer. Confirmed manufacturing moves supply BOM demand. Draft RFQs count as supply in progress.</div></sheet><div class="oe_chatter"><field name="message_follower_ids"/><field name="message_ids"/></div></form></field>
+    </record>
+    <record id="action_policies" model="ir.actions.act_window"><field name="name">Material Policies</field><field name="res_model">mxt.planning.policy</field><field name="view_mode">tree,form</field></record>
+    <record id="view_purchase_lab" model="ir.ui.view">
+        <field name="name">purchase.order.mxt.approval</field><field name="model">purchase.order</field><field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_mxt_submit" string="Submit Approval" type="object" invisible="mxt_approval_state != 'draft' or state not in ['draft', 'sent']"/>
+                <button name="action_mxt_manager_approve" string="Manager Approve" type="object" groups="mxt_operations.group_procurement_manager" invisible="mxt_approval_state != 'submitted'"/>
+                <button name="action_mxt_final_approve" string="Final Approve" type="object" groups="mxt_operations.group_final_approver" invisible="mxt_approval_state != 'manager'"/>
+                <button name="action_mxt_reject" string="Reject Request" type="object" groups="mxt_operations.group_procurement_manager" invisible="mxt_approval_state not in ['submitted', 'manager']"/>
+                <button name="action_mxt_reset" string="Reset Approval" type="object" invisible="mxt_approval_state == 'draft' or state not in ['draft', 'sent', 'cancel']"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside"><page string="Lab Approval"><group><field name="mxt_approval_state"/><field name="mxt_requester_id"/><field name="mxt_manager_id"/><field name="mxt_final_id"/><field name="mxt_needs_final"/><field name="mxt_rejection_reason"/></group><field name="mxt_event_ids"><tree create="0" edit="0" delete="0"><field name="occurred_at"/><field name="actor_id"/><field name="action"/><field name="note"/></tree></field></page></xpath>
+        </field>
+    </record>
+    <record id="view_production_lab" model="ir.ui.view">
+        <field name="name">mrp.production.mxt.workflow</field><field name="model">mrp.production</field><field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_mxt_material_review" string="Review Materials" type="object" invisible="mxt_stage_id != %(stage_planned)d"/>
+                <button name="action_mxt_material_ready" string="Materials Ready" type="object" invisible="mxt_stage_id != %(stage_review)d"/>
+                <button name="action_mxt_start" string="Start Lab Production" type="object" invisible="mxt_stage_id != %(stage_ready)d"/>
+                <button name="action_mxt_inspect" string="Request Inspection" type="object" invisible="mxt_stage_id != %(stage_production)d"/>
+                <button name="action_mxt_quality_pass" string="Pass Inspection" type="object" groups="mxt_operations.group_quality_reviewer" invisible="mxt_stage_id != %(stage_quality)d"/>
+                <button name="action_mxt_rework" string="Request Rework" type="object" groups="mxt_operations.group_quality_reviewer" invisible="mxt_stage_id != %(stage_quality)d"/>
+                <button name="action_mxt_quality_reject" string="Reject Inspection" type="object" groups="mxt_operations.group_quality_reviewer" invisible="mxt_stage_id != %(stage_quality)d"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside"><page string="Lab Workflow"><group><field name="mxt_stage_id"/><field name="mxt_material_ready"/><field name="mxt_quality_status"/><field name="mxt_quality_reviewer_id"/><field name="mxt_inspection_note"/></group><div class="alert alert-info" role="status">Custom Community quality demonstration. Native manufacturing completion requires a passed inspection. This is independently authored and is not the Enterprise Quality app.</div></page></xpath>
+        </field>
+    </record>
+    <record id="view_production_kanban" model="ir.ui.view">
+        <field name="name">mrp.production.mxt.kanban</field><field name="model">mrp.production</field>
+        <field name="arch" type="xml"><kanban default_group_by="mxt_stage_id" quick_create="false" group_create="false" group_edit="false" group_delete="false"><field name="name"/><field name="product_id"/><field name="product_qty"/><field name="mxt_stage_id"/><field name="mxt_material_ready"/><field name="mxt_quality_status"/><templates><t t-name="kanban-box"><div class="oe_kanban_global_click"><strong><field name="name"/></strong><div><field name="product_id"/></div><div>Quantity: <field name="product_qty"/></div><div>Materials reserved: <field name="mxt_material_ready"/></div><div>Inspection: <field name="mxt_quality_status"/></div></div></t></templates></kanban></field>
+    </record>
+    <record id="action_production" model="ir.actions.act_window"><field name="name">Production Board</field><field name="res_model">mrp.production</field><field name="view_mode">kanban,tree,form</field><field name="view_id" ref="view_production_kanban"/></record>
+    <record id="view_product_lab" model="ir.ui.view"><field name="name">product.template.mxt</field><field name="model">product.template</field><field name="inherit_id" ref="product.product_template_only_form_view"/><field name="arch" type="xml"><xpath expr="//notebook" position="inside"><page string="Lab Planning"><group><field name="mxt_material_class"/><field name="mxt_safety_stock"/><field name="mxt_vendor_lead_days"/></group></page></xpath></field></record>
+    <record id="view_company_lab" model="ir.ui.view"><field name="name">res.company.mxt</field><field name="model">res.company</field><field name="inherit_id" ref="base.view_company_form"/><field name="arch" type="xml"><xpath expr="//sheet" position="inside"><group string="Manufacturing Lab Policy" groups="base.group_system"><field name="mxt_final_threshold"/></group></xpath></field></record>
+    <record id="view_sale_lab" model="ir.ui.view"><field name="name">sale.order.mxt</field><field name="model">sale.order</field><field name="inherit_id" ref="sale.view_order_form"/><field name="arch" type="xml"><xpath expr="//notebook" position="inside"><page string="Lab Planning"><field name="mxt_planning_note"/></page></xpath></field></record>
+    <record id="view_picking_lab" model="ir.ui.view"><field name="name">stock.picking.mxt</field><field name="model">stock.picking</field><field name="inherit_id" ref="stock.view_picking_form"/><field name="arch" type="xml"><xpath expr="//notebook" position="inside"><page string="Material Coordination"><field name="mxt_transfer_note"/></page></xpath></field></record>
+    <menuitem id="menu_root" name="Manufacturing Lab" sequence="25" groups="stock.group_stock_user,mrp.group_mrp_user,purchase.group_purchase_user"/>
+    <menuitem id="menu_board" name="Production Board" parent="menu_root" action="action_production" groups="mrp.group_mrp_user"/>
+    <menuitem id="menu_policies" name="Material Policies" parent="menu_root" action="action_policies" groups="stock.group_stock_user"/>
+</odoo>

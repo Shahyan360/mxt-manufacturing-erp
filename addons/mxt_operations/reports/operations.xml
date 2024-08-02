@@ -1,0 +1,21 @@
+<odoo>
+    <record id="report_material_summary" model="ir.actions.report">
+        <field name="name">Lab Manufacturing and Quality Summary</field>
+        <field name="model">mrp.production</field><field name="report_type">qweb-pdf</field>
+        <field name="report_name">mxt_operations.material_summary</field>
+        <field name="report_file">mxt_operations.material_summary</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="material_summary">
+        <t t-call="web.html_container"><t t-foreach="docs" t-as="o"><t t-call="web.external_layout"><div class="page">
+            <h2>Manufacturing and Material Review</h2><p>Independent reconstruction · fictional demonstration data</p>
+            <h3 t-field="o.name"/><table class="table table-sm"><tr><th>Product</th><td><span t-field="o.product_id"/></td><th>Quantity</th><td><span t-field="o.product_qty"/></td></tr><tr><th>Source</th><td><span t-field="o.location_src_id"/></td><th>Destination</th><td><span t-field="o.location_dest_id"/></td></tr><tr><th>Workflow</th><td><span t-field="o.mxt_stage_id"/></td><th>Inspection</th><td><span t-field="o.mxt_quality_status"/></td></tr></table>
+            <h4>Component requirements</h4><table class="table table-sm"><thead><tr><th>Component</th><th>Required</th><th>Reserved / Processed</th><th>Unit</th><th>Move Status</th></tr></thead><tbody><tr t-foreach="o.move_raw_ids" t-as="move"><td><span t-field="move.product_id"/></td><td><span t-field="move.product_uom_qty"/></td><td><span t-field="move.quantity"/></td><td><span t-field="move.product_uom"/></td><td><span t-field="move.state"/></td></tr></tbody></table>
+            <h4>Inspection findings</h4><p t-field="o.mxt_inspection_note"/><p>Reviewer: <span t-field="o.mxt_quality_reviewer_id"/></p>
+            <h4>Production routing</h4><table class="table table-sm"><thead><tr><th>Operation</th><th>Work Center</th><th>Status</th></tr></thead><tbody><tr t-foreach="o.workorder_ids" t-as="work"><td><span t-field="work.name"/></td><td><span t-field="work.workcenter_id"/></td><td><span t-field="work.state"/></td></tr></tbody></table>
+        </div></t></t></t>
+    </template>
+    <record id="report_policy_summary" model="ir.actions.report"><field name="name">Lab Material Planning Decisions</field><field name="model">mxt.planning.policy</field><field name="report_type">qweb-pdf</field><field name="report_name">mxt_operations.policy_summary</field><field name="binding_model_id" ref="model_mxt_planning_policy"/><field name="binding_type">report</field></record>
+    <template id="policy_summary"><t t-call="web.html_container"><t t-foreach="docs" t-as="o"><t t-call="web.external_layout"><div class="page"><h2>Material Replenishment Decision</h2><h3 t-field="o.name"/><p>Warehouse: <span t-field="o.warehouse_id"/></p><p>Product: <span t-field="o.product_id"/></p><p>Route: <span t-field="o.route_id"/></p><p>Minimum: <span t-field="o.min_qty"/> · Maximum: <span t-field="o.max_qty"/> · Safety buffer: <span t-field="o.safety_qty"/></p><p t-field="o.last_decision"/><p>Evaluation time: <span t-field="o.last_evaluated"/></p></div></t></t></t></template>
+</odoo>

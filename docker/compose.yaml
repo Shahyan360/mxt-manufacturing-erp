@@ -1,0 +1,43 @@
+name: personal-mxt-lab
+services:
+  db:
+    image: ${POSTGRES_IMAGE:?Run bootstrap first}
+    environment:
+      POSTGRES_USER: mxt
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run bootstrap first}
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U mxt -d postgres]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [lab]
+  odoo:
+    image: ${ODOO_IMAGE:?Run bootstrap first}
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ODOO_RC: /etc/odoo/odoo.conf
+    ports:
+      - 127.0.0.1:8171:8069
+    volumes:
+      - ../addons:/mnt/extra-addons:ro
+      - ../.local/odoo.conf:/etc/odoo/odoo.conf:ro
+      - ../.local/credentials.json:/run/lab-credentials.json:ro
+      - ../scripts:/opt/lab-scripts:ro
+      - filestore:/var/lib/odoo
+    healthcheck:
+      test: [CMD, python3, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8069/web/login', timeout=5)"]
+      interval: 15s
+      timeout: 8s
+      retries: 20
+    networks: [lab]
+volumes:
+  pgdata:
+  filestore:
+networks:
+  lab:
+    internal: true

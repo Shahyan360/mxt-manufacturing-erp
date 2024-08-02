@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+policy_reader,Planning policy reader,model_mxt_planning_policy,stock.group_stock_user,1,0,0,0
+policy_manager,Planning policy manager,model_mxt_planning_policy,mxt_operations.group_planning_manager,1,1,1,1
+stage_reader,Production stage reader,model_mxt_production_stage,base.group_user,1,0,0,0
+stage_admin,Production stage configuration,model_mxt_production_stage,base.group_system,1,1,1,0
+event_reader,Purchase approval history,model_mxt_approval_event,purchase.group_purchase_user,1,0,0,0
